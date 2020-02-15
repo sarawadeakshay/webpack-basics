@@ -1,5 +1,5 @@
-import helloWorld from './hello-world';
+import helloWorldButton from './components/hello-world-button';
 import addImage from './add-image';
 
-helloWorld();
 addImage();
+helloWorldButton();

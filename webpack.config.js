@@ -23,6 +23,17 @@ module.exports = {
           'css-loader',  //  allows to import css in js files
           'sass-loader'
         ]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/env'], //  converts ES6/7/8/9 into ES5
+            plugins: ['transform-class-properties'] //  to support the class properties
+          }
+        }
       }
     ]
   }

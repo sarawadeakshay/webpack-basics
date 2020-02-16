@@ -1,12 +1,14 @@
 const path = require('path');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.[contenthash].js',
     path: path.resolve(__dirname, 'dist/'), //  converts into absolute path
-    publicPath: 'dist/'  //  images are served from dist folder
+    publicPath: ''  //  images are served from dist folder
   },
   mode: 'none',
   module: {
@@ -43,7 +45,11 @@ module.exports = {
 
     //  to minify css into a new css file
     new MiniCssExtractPlugin({
-      filename: 'styles.css'
-    })
+      filename: 'styles.[contenthash].css'
+    }),
+    new CleanWebpackPlugin(),  //  remove old files from dist folder
+ 
+    //  generates the index.html and updates the bundle.js and styles.css paths
+    new HtmlWebpackPlugin()
   ]
 }

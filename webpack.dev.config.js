@@ -10,6 +10,11 @@ module.exports = {
     publicPath: ''  //  images are served from dist folder
   },
   mode: 'development',
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist/'),  //  path to dist folder
+    index: 'index.html',
+    port: 9000  //  optional
+  },
   module: {
     rules: [
       {

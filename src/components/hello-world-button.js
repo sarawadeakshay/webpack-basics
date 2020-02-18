@@ -8,7 +8,7 @@ class HelloWorldButton {
     btn.innerHTML = 'Hello World Btn';
     btn.className = this.btnClass;
     btn.onclick = function() {
-      console.log('btn clicked!');
+      console.log('btn clicked after Hot module implementation --hot!');
     };
     const br = document.createElement('br');
     document.querySelector('body').appendChild(br);

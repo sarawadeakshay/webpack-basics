@@ -3,6 +3,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -37,6 +38,12 @@ module.exports = {
             plugins: ['transform-class-properties'] //  to support the class properties
           }
         }
+      },
+      {
+        test: /\.hbs$/,
+        use: [
+          'handlebars-loader'
+          ]
       }
     ]
   },
@@ -50,6 +57,9 @@ module.exports = {
     new CleanWebpackPlugin(),  //  remove old files from dist folder
  
     //  generates the index.html and updates the bundle.js and styles.css paths
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      title: 'Webpack Basics',
+      template: 'src/index.hbs'
+    })
   ]
 }
